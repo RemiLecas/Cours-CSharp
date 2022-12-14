@@ -41,7 +41,6 @@ namespace JeuxDame
 
         public void getInput()
         {
-
             Console.WriteLine("Cost Number J1 : " + nbCostJ1);
             Console.WriteLine("Cost Number J2 : " + nbCostJ2);
             Console.WriteLine();
@@ -56,7 +55,6 @@ namespace JeuxDame
                 Console.WriteLine("Player 2 (pieces with 'O') :");
                 yourTurn = false;
             }
-
 
             Console.WriteLine("Enter X axis target");
             Exit = validInput(int.TryParse(Console.ReadLine(), out targetX));
@@ -105,12 +103,11 @@ namespace JeuxDame
         private void rearangePieces()
         {
 
-
             if (yourTurn)
             {
                 pieces[destinationX, destinationY] = pieces[targetX, targetY];
+                pieces[destinationX, destinationY] = Piece_Symbol_J1_Selected;
                 pieces[targetX, targetY] = SPACE;
-                viewMove();
                 nbCostJ1++;
 
             }
@@ -127,10 +124,6 @@ namespace JeuxDame
 
         }
 
-        private void viewMove()
-        {
-            Console.BackgroundColor = ConsoleColor.White;
-        }
 
     }
 }

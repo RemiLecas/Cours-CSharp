@@ -11,6 +11,8 @@ namespace JeuxDame
         public const char Piece_Symbol_J1 = 'X';
         public const char Piece_Symbol_J2 = 'O';
         public const char SPACE = ' ';
+        public int nbPiecesJ1 = 16;
+        public int nbPiecesJ2 = 16;
 
         public static char[,] pieces;
 
@@ -30,6 +32,7 @@ namespace JeuxDame
                     if(i == 0 || i == 1)
                     {
                         pieces[i, j] = Piece_Symbol_J2;
+
                     }
                     else
                     {
