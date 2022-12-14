@@ -106,7 +106,6 @@ namespace JeuxDame
             if (yourTurn)
             {
                 pieces[destinationX, destinationY] = pieces[targetX, targetY];
-                pieces[destinationX, destinationY] = Piece_Symbol_J1_Selected;
                 pieces[targetX, targetY] = SPACE;
                 nbCostJ1++;
 
