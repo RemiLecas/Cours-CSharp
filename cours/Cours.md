@@ -22,7 +22,7 @@ System // Espace de nom racine. Il contient les types de bases du framework .NET
 System.Collections //Tous les types permettant de gerer les listes et les tableaux
 ``````
 
-.NET est composé de deux types différents: les types et les types reference.
+.NET est composé de deux types différents: les types valeurs et les types reference.
 
 ### Les types valeurs :
 
@@ -152,10 +152,9 @@ int i = 45; // entier signé sur 32 bits
 long k = i; // entier signé sur 64 bits
 ```
 
-### Questions RPI
+#### Les Enums
 
 ```C#
-
 enum LesJoursDeLaSemaine{
 	Lundi,
 	Mardi,
@@ -167,10 +166,6 @@ enum LesJoursDeLaSemaine{
 }
 
 LesJoursDeLaSemaine Weekend = LesJoursDeLaSemaine.Samedi | LesJoursDeLaSemaine.Dimanche;
-
-// Décrire le fonctionnement des enums en C#
-
-/* Les enums permettent de définir un ensemble de constante comme ici avec les jours de la semaine.  */
 ```
 
 
@@ -193,19 +188,6 @@ LesJoursDeLaSemaine Weekend = LesJoursDeLaSemaine.Samedi | LesJoursDeLaSemaine.D
 	int[][] Tableau = new int[3][];
 	Tableau[0] = new int[] {45, 2};
 	Tableau[1] = new int[] {34, 34, 4, 67};
-
-	//Expliquez la différence entre ces syntaxes
-	
-	/* Ce sont l'instanciation et le typage des tableaux qui sont différentes */
-	
-	//Tentez de parcourir des tableaux multidimensionnels avec des boucles for
-	/* 
-            for(int i = 0; i < Tableau.Length - 1; i++){
-                for(int j = 0; j < Tableau[i].Length; j++){
-                    Console.WriteLine(Tableau[i][j]);
-                }
-            }
-	} */
 ```
 
 #### Les Types
@@ -229,9 +211,6 @@ On peut y ajouter des éléments :
 - protected : autorise l'accès uniquement pour les autres membres du type et pour mes types héritant de celui-ci (dans l'assembly et en dehors de l'assembly)
 - internal : autorise l'accès pour les types d'assembly.
 - protected internal : autorise l'accès uniquement pour les autres membres du type et pour mes types héritant de celui-ci (dans l'assembly uniquement)
-
-Exercice : Que signifie le terme "assembly" ?
-Citez un exemple réel d'un usage pertinent du mot clé "private".
 
 **Si aucune portée n'est precisé sur un membre, il est considéré comme private. Une classe sans modificateur sera quand a elle consideree comme public.**
 
@@ -266,3 +245,49 @@ SuperClass obj = new SuperClass();
 obj.MyProperty
 
 ```
+
+##### L'héritage
+
+Toutes les classes du framework .NET dérivent de la classe System.Object.
+
+L'heritage correspond a deux fonctionnalités
+
+Lors de l'heritage de classe un type dérive d'un type de base en prenant tous ses membres accessibles. Cette fonctionnalité est utile lorsque plusieurs types partagent les mêmes fonctionnalités.
+
+```C#
+public partial class ChildClass: MotherClass
+{
+
+}
+```
+
+Si aucune classe de base n'est spécifiée, le compilateur considère System.Object comme la classe mère.
+
+```C#
+public class ChildClass: System.Object
+{
+
+}
+/// est equivalent à
+public class ChildClass 
+{
+
+}
+```
+Les membres accessibles depuis la clase dérivée sont ceux qui ont un niveau d'acces public, protected ou internal (mais vous le saviez déjà...). Cela s'applique aux méthodes et aux propriétés:
+
+###### [](https://github.com/bendahmanem/RPI-2022-2023-CSHARP/blob/main/C%23.md#les-membres-virtuels)Les membres virtuels
+
+en déclarant un membre avec le mot-cle virtual, vous autorisez le membre à être surchargé par les classses dérivées. Cela s'applique aux méthodes et aux propriétés. La méthode surchargée doit être explicitement déclarée en utilisant le mot-clé override.
+
+La signature de la methode dans la classe fille doit etre identique à la signature de la méthode dans la classe mère.
+
+
+### Les API
+
+Une API est une interface connecté à une base de données, contient la logique d'une application.
+
+Une API sert à standardiser les échanges avec le WEB en format JSON ou XML.
+
+Code http commencant par 2 est en général bon signe
+
